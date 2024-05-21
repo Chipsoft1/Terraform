@@ -28,12 +28,15 @@ resource "null_resource" "provision" {
     port     = 5985
   }
 
+  provisioner "file" {
+    source      = "Scripts/ScriptT1.ps1"
+    destination = "C:\\Scripts\\ScriptT1.ps1"
+  }
+
   provisioner "remote-exec" {
     inline = [
-      "powershell.exe -Command \"Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process -Force\"",
-      "powershell.exe -File C:\\Scripts\\scriptT1.ps1"
+      "powershell.exe -File C:\\Scripts\\ScriptT1.ps1"
     ]
   }
 }
-
 
