@@ -2,24 +2,35 @@ provider "azurerm" {
   features {}
 }
 
+variable "vm_ip" {
+  description = "IP address of the Windows VM"
+  type        = string
+}
+
+variable "admin_username" {
+  description = "Admin username for the Windows VM"
+  type        = string
+}
+
+variable "admin_password" {
+  description = "Admin password for the Windows VM"
+  type        = string
+  sensitive   = true
+}
+
 resource "null_resource" "provision" {
   connection {
     type     = "winrm"
-    host     = "4.180.155.203"
-    user     = "beheerder"
-    password = "M@sterY0d@123"
+    host     = var.vm_ip
+    user     = var.admin_username
+    password = var.admin_password
     https    = false
     port     = 5985
   }
 
-  provisioner "file" {
-    source      = "C:\\Users\\beheerder\\terraform-azure-windows\\scripts\\Script.ps1"
-    destination = "C:\\Script.ps1"
-  }
-
   provisioner "remote-exec" {
     inline = [
-      "powershell.exe -File C:\\Script.ps1"
+      "powershell.exe -File C:\\scripts\\scriptT1.ps1"
     ]
   }
 }
