@@ -13,8 +13,8 @@ resource "null_resource" "provision" {
   }
 
   provisioner "file" {
-    source      = "C:\Users\beheerder\terraform-azure-windows\scripts\Script.ps1"
-    destination = "C:\Users\beheerder\terraform-azure-windows\scripts"
+    source      = "C:\\Users\\beheerder\\terraform-azure-windows\\scripts\\Script.ps1"
+    destination = "C:\\Users\\beheerder\\terraform-azure-windows\\scripts"
   }
 
   provisioner "remote-exec" {
