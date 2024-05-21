@@ -39,7 +39,7 @@ resource "null_resource" "provision" {
 
   provisioner "remote-exec" {
     inline = [
-      "powershell.exe -Command \"@'\n${var.powershell_script_content}\n'@ | Out-File -FilePath 'C:\\Scripts\\ScriptT1.ps1' -Encoding utf8\"",
+      "powershell.exe -Command \"\\\"$outputPath = 'C:\\Scripts\\hello_world.txt'; 'Hello, World!' | Out-File -FilePath $outputPath -Encoding utf8\\\" | Set-Content -Path 'C:\\Scripts\\ScriptT1.ps1'\"",
       "powershell.exe -ExecutionPolicy Bypass -File C:\\Scripts\\ScriptT1.ps1"
     ]
   }
