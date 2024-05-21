@@ -30,7 +30,7 @@ resource "null_resource" "provision" {
 
   provisioner "remote-exec" {
     inline = [
-      "powershell.exe -File C:\\scripts\\scriptT1.ps1"
+      "powershell.exe -File C:\\Scripts\\ScriptT1.ps1"
     ]
   }
 }
