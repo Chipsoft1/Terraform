@@ -21,6 +21,10 @@ variable "admin_password" {
 variable "powershell_script_content" {
   description = "The content of the PowerShell script to run"
   type        = string
+  default     = <<-EOT
+$outputPath = "C:\\hello_world.txt"
+"Hello, World!" | Out-File -FilePath $outputPath -Encoding utf8
+EOT
 }
 
 resource "null_resource" "provision" {
@@ -39,8 +43,9 @@ resource "null_resource" "provision" {
 
   provisioner "remote-exec" {
     inline = [
-      "powershell.exe -Command \"[System.IO.File]::WriteAllText('C:\\Scripts\\ScriptT1.ps1', '${var.powershell_script_content.Replace(\"`\", \"``\").Replace(\"$\", \"`$\") }')\"",
+      "powershell.exe -Command \"[System.IO.File]::WriteAllText('C:\\Scripts\\ScriptT1.ps1', \\\"${var.powershell_script_content}\\\")\"",
       "powershell.exe -ExecutionPolicy Bypass -File C:\\Scripts\\ScriptT1.ps1"
     ]
   }
 }
+
