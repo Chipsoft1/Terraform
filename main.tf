@@ -13,7 +13,7 @@ variable "admin_username" {
 }
 
 variable "admin_password" {
-  description = "Admin password for the Windows VM"
+  description = "Admin password for the Windows vM"
   type        = string
   sensitive   = true
 }
