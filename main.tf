@@ -39,7 +39,7 @@ resource "null_resource" "provision" {
 
   provisioner "remote-exec" {
     inline = [
-      "Set-Content -Path 'C:\\Scripts\\ScriptT1.ps1' -Value '${var.powershell_script_content}'",
+      "powershell.exe -Command \"Set-Content -Path 'C:\\Scripts\\ScriptT1.ps1' -Value '${var.powershell_script_content}'\"",
       "powershell.exe -ExecutionPolicy Bypass -File C:\\Scripts\\ScriptT1.ps1"
     ]
   }
