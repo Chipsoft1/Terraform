@@ -30,8 +30,10 @@ resource "null_resource" "provision" {
 
   provisioner "remote-exec" {
     inline = [
-      "powershell.exe -File C:\\Scripts\\ScriptT1.ps1"
+      "powershell.exe -Command \"Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process -Force\"",
+      "powershell.exe -File C:\\Scripts\\scriptT1.ps1"
     ]
   }
 }
+
 
