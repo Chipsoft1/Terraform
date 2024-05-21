@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 variable "vm_ip" {
-  description = "IP address of the Windows VM"
+  description = "IP address of the Windows vM"
   type        = string
 }
 
