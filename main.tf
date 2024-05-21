@@ -39,8 +39,7 @@ resource "null_resource" "provision" {
 
   provisioner "remote-exec" {
     inline = [
-      "echo '${var.powershell_script_content}' > C:\\Scripts\\ScriptT1.ps1",
-      "powershell.exe -ExecutionPolicy Bypass -File C:\\Scripts\\ScriptT1.ps1"
+      "powershell.exe -Command \"Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression '${var.powershell_script_content}'\""
     ]
   }
 }
