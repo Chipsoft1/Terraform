@@ -13,13 +13,13 @@ resource "null_resource" "provision" {
   }
 
   provisioner "file" {
-    source      = "scripts/setup.ps1"
-    destination = "C:\\setup.ps1"
+    source      = "scripts/Script.ps1"
+    destination = "C:\\Script.ps1"
   }
 
   provisioner "remote-exec" {
     inline = [
-      "powershell.exe -File C:\\setup.ps1"
+      "powershell.exe -File C:\\Script.ps1"
     ]
   }
 }
