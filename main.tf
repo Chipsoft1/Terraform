@@ -24,10 +24,6 @@ variable "powershell_script_content" {
 }
 
 resource "null_resource" "provision" {
-  triggers = {
-    always_run = "${timestamp()}"
-  }
-
   connection {
     type     = "winrm"
     host     = var.vm_ip
@@ -37,11 +33,14 @@ resource "null_resource" "provision" {
     port     = 5985
   }
 
+  provisioner "file" {
+    source      = "scripts/ScriptT1.ps1"
+    destination = "C:\\Scripts\\ScriptT1.ps1"
+  }
+
   provisioner "remote-exec" {
     inline = [
-      "powershell.exe -Command \"@'\n${var.powershell_script_content}\n'@ | Set-Content -Path 'C:\\Scripts\\ScriptT1.ps1' -Encoding utf8\"",
-      "powershell.exe -ExecutionPolicy Bypass -File C:\\Scripts\\ScriptT1.ps1"
+      "powershell.exe -File C:\\Scripts\\ScriptT1.ps1"
     ]
   }
 }
-
