@@ -29,7 +29,7 @@ resource "null_resource" "provision" {
   }
 
   provisioner "file" {
-    source      = "Scripts/ScriptT1.ps1"
+    source      = "scripts/ScriptT1.ps1"
     destination = "C:\\Scripts\\ScriptT1.ps1"
   }
 
