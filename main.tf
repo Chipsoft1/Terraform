@@ -24,6 +24,10 @@ variable "powershell_script_content" {
 }
 
 resource "null_resource" "provision" {
+  triggers = {
+    always_run = "${timestamp()}"
+  }
+
   connection {
     type     = "winrm"
     host     = var.vm_ip
