@@ -2,5 +2,5 @@
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 
 # Your existing script content
-$outputPath = "C:\hello_world.txt"
+$outputPath = "C:\Scripts\hello_world.txt"
 "Hello, World!" | Out-File -FilePath $outputPath -Encoding utf8
