@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 variable "vm_ip" {
-  description = "IP address of the Windows vM"
+  description = "IP address of the Windows VM"
   type        = string
 }
 
@@ -39,9 +39,8 @@ resource "null_resource" "provision" {
 
   provisioner "remote-exec" {
     inline = [
-      "powershell.exe -Command \"[System.IO.File]::WriteAllText('C:\\Scripts\\ScriptT1.ps1', '${var.powershell_script_content}')\"",
+      "powershell.exe -Command \"[System.IO.File]::WriteAllText('C:\\Scripts\\ScriptT1.ps1', '${var.powershell_script_content.Replace(\"`\", \"``\").Replace(\"$\", \"`$\") }')\"",
       "powershell.exe -ExecutionPolicy Bypass -File C:\\Scripts\\ScriptT1.ps1"
     ]
   }
 }
-
